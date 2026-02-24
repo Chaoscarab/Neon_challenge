@@ -2,13 +2,15 @@
 import express from 'express';
 import { CopilotClient } from "@github/copilot-sdk";
 import { Copilot } from "./copilot/copilot.js";
+import dotenv from 'dotenv'
 
+dotenv.config();
 
 const app: express.Application = express();
 
 const port: number = 3000;
-const NEON: string = "wss://neonhealth.software/agent-puzzle/challenge"
-const NEON_CODE = "a84e866af58e28e9"
+const NEON: string = process.env.NEON_URL ?? "wss://neonhealth.software/agent-puzzle/challenge";
+const NEON_CODE = process.env.NEON_CODE 
 
 app.get('/', (_req, _res) => {
     _res.send("beginning challenge...");
